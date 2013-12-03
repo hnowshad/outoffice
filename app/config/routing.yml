@@ -1,0 +1,8 @@
+out_office_site:
+    resource: "@OutOfficeSiteBundle/Resources/config/routing.yml"
+    prefix:   /
+
+out_office_store:
+    resource: "@OutOfficeStoreBundle/Resources/config/routing.yml"
+    prefix:   /
+

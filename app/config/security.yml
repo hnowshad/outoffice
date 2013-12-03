@@ -1,0 +1,64 @@
+security:
+    firewalls:
+        main:
+            pattern:    ^/
+            anonymous: ~
+#            http_basic:
+#               realm: "Secured Demo Area"
+            remember_me:
+                key:      "%secret%"
+                lifetime: 91536000 # a year
+                domain:   ~ # Defaults to the current domain from $_SERVER
+                path: /
+                httponly: false
+                remember_me_parameter: _remember_me
+                #always_remember_me: true
+            form_login:
+                login_path:  _my_login
+                check_path:  _my_login_check
+                always_use_default_target_path: true
+                default_target_path: /out/homepage
+                remember_me:    true
+            logout:
+                path:   _my_logout
+                target: _my_login
+                
+          
+                
+#        nowshad_controller:
+#            pattern:  ^/nowshad/mycontact
+#            form_login:
+#                login_path: _my_login
+#                check_path: _my_login_check
+                
+#        qnowshad_controller_test2:
+#            pattern:  ^/nowshad/test2
+#            anonymous: ~
+#            http_basic:
+#                realm: "Secured Demo Area"
+#                
+
+    access_control:
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/login$, roles: IS_AUTHENTICATED_ANONYMOUSLY }
+        - { path: ^/, roles: IS_AUTHENTICATED_REMEMBERED  }
+
+    providers:
+        chain_provider:
+          chain:
+            providers: [in_memory, user_db]
+            
+        in_memory:
+            memory:
+                users:
+                    user:  { password: user, roles: 'ROLE_USER' }
+                    admin: { password: admin, roles: ['ROLE_ADMIN', 'ROLE_FLEET', 'ROLE_USER'] }
+        user_db:
+          entity: {class: OutOffice\StoreBundle\Entity\User, property: username}
+
+    encoders:
+        OutOffice\StoreBundle\Entity\User: 
+                algorithm: sha1
+                iterations: 1
+                encode_as_base64: false
+        Symfony\Component\Security\Core\User\User: plaintext

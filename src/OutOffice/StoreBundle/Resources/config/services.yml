@@ -1,0 +1,7 @@
+parameters:
+#    out_office_store.example.class: OutOffice\StoreBundle\Example
+
+services:
+#    out_office_store.example:
+#        class: %out_office_store.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

@@ -1,0 +1,28 @@
+out_office_site_homepage:
+    pattern:  /hello/{name}
+    defaults: { _controller: OutOfficeSiteBundle:Default:index }
+    
+crud_controller:
+  type: annotation
+  resource: "@OutOfficeStoreBundle/Controller/CrudController.php"
+  prefix: /crud    
+
+outoffice_controller:
+  type: annotation
+  resource: "@OutOfficeSiteBundle/Controller/OutOfficeController.php"
+  prefix: /out    
+  
+login_controller:
+  type: annotation
+  resource: "@OutOfficeSiteBundle/Controller/LoginController.php"  
+  
+admin_controller:
+  type: annotation
+  resource: "@OutOfficeSiteBundle/Controller/AdminController.php"  
+  prefix: /admin  
+  
+employee_controller:
+  type: annotation
+  resource: "@OutOfficeSiteBundle/Controller/EmployeeController.php"  
+  prefix: /employee  
+  

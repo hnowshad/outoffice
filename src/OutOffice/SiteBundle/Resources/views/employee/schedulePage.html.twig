@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="{{ asset('bootstrap/css/bootstrap.min.css') }}" />
+    <link rel="stylesheet" href="{{ asset('jquery-ui/css/blitzer/jquery-ui.min.css') }}" />
+
+    <script src="{{ asset('myjs/jquery.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('jquery-ui/js/jquery-ui.min.js') }}" type="text/javascript"></script>
+    <script src="{{ asset('bootstrap/js/bootstrap.min.js') }}" type="text/javascript"></script>
+    
+    <style type="text/css">
+    </style>
+    
+    <script type="text/javascript">
+	    $(function() {
+			$( "#form_outDate" ).datepicker();
+		});
+    </script>
+</head>
+<body style="padding-top: 50px">
+<div class="container">
+	<div class="panel panel-default">
+	  <div class="panel-heading">Add/Update Schedule</div>
+	{{ form_start(outOffice, {'method': 'post', 'attr' : { 'class': 'form-horizontal' }  }) }}
+		  <div class="panel-body">
+					 <div class="form-group">
+					    <label for="form_outDate" class="col-sm-2 control-label">Date</label>
+					    <div class="col-sm-10">
+							{{ form_widget(outOffice.outDate, 
+								{ 'attr': {
+											"type" : "text",
+										  }
+								}
+							) }}
+						</div>
+					</div>
+					
+			
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Time Out</label>
+						<div class="col-sm-10">
+							<div class="form-inline">
+								<div class="form-group">
+								     <label for="form_timeOut" class="control-label col-lg-0"></label> 
+								     <div class="col-lg-2">
+										{{ form_widget(outOffice.timeOut, 
+											{ 'attr': {
+														"type" : "text",
+													  }
+											}
+										) }}
+										</div>
+								</div>
+								
+								<div class="form-group">
+								    <label for="form_timeInExpected" class="control-label col-lg-6">Time In Expected</label>
+								    <div class="col-lg-2">
+										{{ form_widget(outOffice.timeInExpected, 
+											{ 'attr': {
+														"type" : "text",
+													  }
+											}
+										) }}
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+					
+					
+					<div class="form-group">
+					    <label for="form_timeInActual" class="col-sm-2 control-label">Time In Actual</label>
+					    <div class="col-sm-10">
+							{{ form_widget(outOffice.timeInActual, 
+								{ 'attr': {
+											"type" : "text",
+										  }
+								}
+							) }}
+						</div>
+					</div>
+					<div class="form-group">
+					    <label for="form_details" class="col-sm-2 control-label">Details</label>
+					    <div class="col-sm-10">
+							{{ form_widget(outOffice.details, 
+								{ 'attr': {
+											"type" : "text",
+											"class" : "col-sm-6",
+											"rows" : 3
+										  }
+								}
+							) }}
+						</div>
+					</div>
+			</div>
+		{{ form_end(outOffice) }}
+		<div class="panel-footer"><input type="submit" class="btn btn-primary"/></div>
+	</div>
+</div>
+</body>
+</html>

@@ -10,9 +10,14 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\OneToMany;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Doctrine\ORM\Mapping\OneToOne;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\UniqueConstraint;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 
 /**
  * @Entity
+ * @Table(name="user", uniqueConstraints={@UniqueConstraint(name="user_unique_index", columns={"username"})})
  */
 class User implements UserInterface, \Serializable{
 	
@@ -53,6 +58,11 @@ class User implements UserInterface, \Serializable{
      * @var unknown
      */
     protected $roles;
+    
+    /**
+     * @OneToOne(targetEntity="Employee", mappedBy="user")
+     */
+    protected $employee;
 
 	
 	public function __construct(){
@@ -64,17 +74,7 @@ class User implements UserInterface, \Serializable{
 		return $this->id;
 	}
 	
-	public function getName()
-	{
-		return $this->name;
-	}
 	
-	public function setName($name)
-	{
-		$this->name = $name;
-	}
-	
-
     /**
      * Set username
      *
@@ -123,7 +123,7 @@ class User implements UserInterface, \Serializable{
 
 
 
-    public function setSalt($salt)
+    private function setSalt($salt)
     {
         $this->salt = $salt;
     
@@ -241,4 +241,27 @@ class User implements UserInterface, \Serializable{
         return $this->lastName;
     }
 
+
+    /**
+     * Set employee
+     *
+     * @param \OutOffice\StoreBundle\Entity\Employee $employee
+     * @return User
+     */
+    public function setEmployee(\OutOffice\StoreBundle\Entity\Employee $employee = null)
+    {
+        $this->employee = $employee;
+    
+        return $this;
+    }
+
+    /**
+     * Get employee
+     *
+     * @return \OutOffice\StoreBundle\Entity\Employee 
+     */
+    public function getEmployee()
+    {
+        return $this->employee;
+    }
 }

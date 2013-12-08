@@ -10,9 +10,15 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\OneToOne;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Doctrine\ORM\Mapping\JoinColumn;
+use Doctrine\ORM\Mapping\Table;
+use Doctrine\ORM\Mapping\UniqueConstraint;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
- * @Entity
+ * @Entity(repositoryClass="EmployeeRepository")
+ * @Table(name="employee", uniqueConstraints={@UniqueConstraint(name="employee_unique_index", columns={"email"})})
  */
 class Employee{
 	/**
@@ -28,9 +34,16 @@ class Employee{
 	/**
 	 *	@Column(type="string")
 	 */
-	private $name;
+	private $firstName;
+	
 	/**
-	 *	@Column(type="string", nullable=true)
+	 *	@Column(type="string")
+	 */
+	private $lastName;
+	
+	/**
+	 *	@Column(type="string", nullable=true, unique=true)
+	 *	@Assert\Email()
 	 */
 	private $email;
 	/**
@@ -59,29 +72,8 @@ class Employee{
     {
         return $this->id;
     }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return Employee
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
     
-        return $this;
-    }
 
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
-    }
 
     /**
      * Set email
@@ -219,5 +211,51 @@ class Employee{
     public function getUser()
     {
         return $this->user;
+    }
+
+    /**
+     * Set firstName
+     *
+     * @param string $firstName
+     * @return Employee
+     */
+    public function setFirstName($firstName)
+    {
+        $this->firstName = $firstName;
+    
+        return $this;
+    }
+
+    /**
+     * Get firstName
+     *
+     * @return string 
+     */
+    public function getFirstName()
+    {
+        return $this->firstName;
+    }
+
+    /**
+     * Set lastName
+     *
+     * @param string $lastName
+     * @return Employee
+     */
+    public function setLastName($lastName)
+    {
+        $this->lastName = $lastName;
+    
+        return $this;
+    }
+
+    /**
+     * Get lastName
+     *
+     * @return string 
+     */
+    public function getLastName()
+    {
+        return $this->lastName;
     }
 }

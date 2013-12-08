@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping\Column;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping\ManyToMany;
 use Doctrine\ORM\Mapping\ManyToOne;
+use Symfony\Component\Validator\Constraints\GreaterThan;
 
 /**
  * @Entity
@@ -21,7 +22,7 @@ class OutOffice {
 	private $id;
 	
 	/**
-	 *	@ManyToOne(targetEntity="Employee", inversedBy="id")
+	 *	@ManyToOne(targetEntity="Employee", inversedBy="id" )
 	 */
 	private $employee;
 	
@@ -30,7 +31,7 @@ class OutOffice {
 	 */
 	private $purpose;
 	/**
-	 * @Column(type="date")
+	 * @Column(type="date",  nullable=true)
 	 * @var unknown
 	 */
 	private $outDate;
@@ -40,7 +41,7 @@ class OutOffice {
 	 */
 	private $timeOut;
 	/**
-	 * @Column(type="time")
+	 * @Column(type="time",  nullable=true)
 	 * @var unknown
 	 */
 	private $timeInExpected;
@@ -65,6 +66,18 @@ class OutOffice {
     {
         return $this->id;
     }
+    
+    /**
+     * Set id
+     *
+     */
+    public function setId($id)
+    {
+    	 $this->id = $id;
+    
+        return $this;
+    }
+    
 
     /**
      * Set outDate

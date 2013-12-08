@@ -1,0 +1,136 @@
+<style type="text/css">
+	.margin-top-10{
+		margin-top: 10px;
+	} 
+
+</style>
+<script type="text/javascript">
+	    $(function() {
+			$( "#form_joinDate" ).datepicker({ dateFormat: 'dd-mm-yy' });
+			$( "#form_releaseDate" ).datepicker({ dateFormat: 'dd-mm-yy' });
+		});
+</script>
+
+<div class="row margin-top-10">
+	{% if error %}
+		<div class="alert alert-danger">
+		 	<button type="button" class="close" data-dismiss="alert">&times;</button>
+			    <div>{{ error }}</div>
+		</div>
+	{% endif %}
+	
+
+	{{ form_start(employee, {'method': 'post', 'attr' : { 'class': 'form-horizontal', 'role' : 'form' }  }) }}
+			{{ form_errors(employee) }}
+			<div class="form-group">
+			    <label for="" class="col-sm-2 control-label">First Name</label>
+			    <div class="col-sm-3">
+					{{ form_widget(employee.firstName, 
+						{ 'attr': {
+									"type" : "text",
+									"class" : "form-control"
+								  }
+						}
+					) }}
+	
+				</div>
+			</div>
+			
+			<div class="form-group">
+			    <label for="" class="col-sm-2 control-label">Last Name</label>
+			    <div class="col-sm-3">
+					{{ form_widget(employee.lastName, 
+						{ 'attr': {
+									"type" : "text",
+									"class" : "form-control"
+								  }
+						}
+					) }}
+	
+				</div>
+			</div>
+			
+			<div class="form-group">
+			    <label for="" class="col-sm-2 control-label">Email</label>
+			    <div class="col-sm-3">
+					{{ form_widget(employee.email, 
+						{ 'attr': {
+									"type" : "text",
+									"class" : "form-control"
+								  }
+						}
+					) }}
+					
+					{{ form_errors(employee.email) }}
+	
+				</div>
+			</div>
+			
+			<div class="form-group">
+			    <label for="" class="col-sm-2 control-label">Department</label>
+			    <div class="col-sm-3">
+					{{ form_widget(employee.department, 
+						{ 'attr': {
+									"type" : "text",
+									"class" : "form-control"
+								  }
+						}
+					) }}
+	
+				</div>
+			</div>
+			
+			<div class="form-group">
+			    <label for="" class="col-sm-2 control-label">Designation</label>
+			    <div class="col-sm-3">
+					{{ form_widget(employee.designation, 
+						{ 'attr': {
+									"type" : "text",
+									"class" : "form-control"
+								  }
+						}
+					) }}
+	
+				</div>
+			</div>
+			
+			<div class="form-group">
+			    <label for="" class="col-sm-2 control-label">Join Date</label>
+			    <div class="col-sm-3">
+					{{ form_widget(employee.joinDate, 
+						{ 'attr': {
+									"type" : "text",
+									"class" : "form-control"
+								  }
+						}
+					) }}
+	
+				</div>
+			</div>
+			
+				
+			<div class="form-group">
+			    <label for="" class="col-sm-2 control-label">Release Date</label>
+			    <div class="col-sm-3">
+					{{ form_widget(employee.releaseDate, 
+						{ 'attr': {
+									"type" : "text",
+									"class" : "form-control"
+								  }
+						}
+					) }}
+	
+				</div>
+			</div>
+			
+			<div class="form-group">
+			    <label for="" class="col-sm-2 control-label"></label>
+			    <div class="col-sm-3">
+					<input type="submit" value="Save" class="btn btn-primary"/>
+	
+				</div>
+			</div>
+							
+	{{ form_end(employee) }}
+	
+</div>
